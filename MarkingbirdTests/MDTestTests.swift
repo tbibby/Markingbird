@@ -13,11 +13,11 @@ class MDTestTests: XCTestCase {
             
             // If there is a difference, print it in a more readable way than
             // XCTest does
-            switch firstDifferenceBetweenStrings(test.actualResult, s2: test.expectedResult) {
+            switch firstDifferenceBetweenStrings(test.actualResult as NSString, s2: test.expectedResult as NSString) {
             case .noDifference:
                 break;
             case .differenceAtIndex:
-                let prettyDiff = prettyFirstDifferenceBetweenStrings(test.actualResult, s2: test.expectedResult)
+                let prettyDiff = prettyFirstDifferenceBetweenStrings(test.actualResult as NSString, s2: test.expectedResult as NSString)
                 print("\n====\n\(test.actualName): \(prettyDiff)\n====\n")
             }
             
@@ -66,7 +66,7 @@ class MDTestTests: XCTestCase {
                     let expectedURL = folderURL.appendingPathComponent(expectedName)
                     let expectedContent: String?
                     do {
-                        expectedContent = try String(contentsOfURL: expectedURL, encoding: String.Encoding.utf8)
+                        expectedContent = try String(contentsOf: expectedURL, encoding: .utf8)
                     } catch {
                         XCTAssertNil(error)
                         expectedContent = nil
@@ -77,7 +77,7 @@ class MDTestTests: XCTestCase {
                     let sourceURL = folderURL.appendingPathComponent(actualName!)
                     let sourceContent: String?
                     do {
-                        sourceContent = try String(contentsOfURL: sourceURL, encoding: String.Encoding.utf8)
+                        sourceContent = try String(contentsOf: sourceURL, encoding: .utf8)
                     } catch {
                         XCTAssertNil(error)
                         sourceContent = nil
